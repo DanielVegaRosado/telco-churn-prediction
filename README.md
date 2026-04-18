@@ -1,55 +1,56 @@
-# Trabajo 1 — Clasificación de Churn en Telco
+[README.md](https://github.com/user-attachments/files/26853701/README.md)
+# Telco Customer Churn Prediction
 
-**Asignatura:** Desarrollo de Aplicaciones de Aprendizaje Automático  
-**Autor:** Daniel Vega Rosado  
-**Universidad:** UEMC — Ingeniería Informática (3º curso)
+**Subject:** Development of Machine Learning Applications  
+**Author:** Daniel Vega Rosado  
+**University:** UEMC — Computer Engineering (3rd year)
 
-## Descripción
+## Description
 
-Práctica de clasificación supervisada sobre el dataset **Telco Customer Churn** de IBM. El objetivo es predecir si un cliente cancelará su contrato (`Churn = Yes/No`) usando un **Random Forest** con optimización de hiperparámetros mediante **Optuna**.
+Supervised classification project on the **Telco Customer Churn** dataset by IBM. The goal is to predict whether a customer will cancel their contract (`Churn = Yes/No`) using a **Random Forest** with hyperparameter optimization via **Optuna**.
 
 ## Dataset
 
-`WA_Fn-UseC_-Telco-Customer-Churn.csv` — Dataset público de IBM que recoge información de ~7000 clientes de una empresa de telecomunicaciones: datos demográficos, servicios contratados y si causaron baja.
+`WA_Fn-UseC_-Telco-Customer-Churn.csv` — Public IBM dataset containing information on ~7,000 telecom customers: demographic data, contracted services, and whether they churned.
 
-## Estructura del repositorio
+## Repository Structure
 
 ```
-├── Tarea_1.py                          # Script principal
+├── Tarea_1.py                            # Main script
 ├── WA_Fn-UseC_-Telco-Customer-Churn.csv  # Dataset
-├── Trabajo1_Daniel_Vega_Rosado.pdf     # Memoria del trabajo
-├── practica_bloque_1.pdf               # Enunciado de la práctica
+├── Trabajo1_Daniel_Vega_Rosado.pdf       # Project report
+├── practica_bloque_1.pdf                 # Assignment statement
 └── README.md
 ```
 
-## Metodología
+## Methodology
 
-1. **Carga y preprocesado** del dataset: eliminación de columnas irrelevantes, conversión de tipos, codificación one-hot de variables categóricas.
-2. **División** train/test (80/20) con `random_state=42`.
-3. **Optimización de hiperparámetros** con Optuna (50 trials, maximizando accuracy en validación cruzada 5-fold):
+1. **Loading and preprocessing**: dropping irrelevant columns, type conversion, one-hot encoding of categorical variables.
+2. **Train/test split** (80/20) with `random_state=42`.
+3. **Hyperparameter optimization** with Optuna (50 trials, maximizing accuracy via 5-fold cross-validation):
    - `n_estimators` ∈ [50, 300]
    - `max_depth` ∈ [2, 20]
    - `min_samples_split` ∈ [2, 10]
    - `min_samples_leaf` ∈ [1, 5]
-4. **Entrenamiento** del modelo final con los mejores hiperparámetros (Pipeline con StandardScaler).
-5. **Evaluación** sobre el conjunto de test: accuracy, precision, recall, F1-score (macro) y matriz de confusión.
-6. **Importancia de variables**: top 10 features más relevantes del modelo.
+4. **Final model training** with best hyperparameters (Pipeline with StandardScaler).
+5. **Evaluation** on the test set: accuracy, precision, recall, F1-score (macro) and confusion matrix.
+6. **Feature importance**: top 10 most relevant features.
 
-## Requisitos
+## Requirements
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Ejecución
+## Usage
 
 ```bash
 python Tarea_1.py
 ```
 
-El script imprime en consola las métricas del modelo y las 10 variables más importantes.
+The script prints the model metrics and the top 10 most important features to the console.
 
-## Tecnologías
+## Technologies
 
 - Python 3.x
 - pandas
